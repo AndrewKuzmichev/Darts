@@ -11,6 +11,7 @@
 <script type="text/javascript" src="js/counterPlayers.js"></script>
 
 	<a href="/" class="back">Назад</a>
+	<div class="errors" data-v="<?if( !empty( $_REQUEST['errors'] ) )echo $_REQUEST['errors'];?>">	</div>
 	<div class="wrap_playground">
 		<div class="main playground" id="left_playground">
 			<table class="playground_table">
@@ -45,8 +46,8 @@
 
 		</ul>
 		<div class="wrap_a">
-			<a href="#">Отыграться</a>
-			<a href="#">Новая игра</a>
+			<a href="/playground">Отыграться</a>
+			<a href="/">Новая игра</a>
 			<a href="statistics.php">Статистика</a>
 		</div>
 		<img src="firewark.jpg"  id="firewark" alt="">
