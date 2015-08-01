@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var index = 1;
 	var number_try = 0;
 	var flagCheckWin = false;
-
+	console.log( namesPhp );
 	$("body").keypress(function(e){
 
 		if( ( e.keyCode==13 ) && ( $('.result').css('display') == 'none' ) ){
@@ -37,8 +37,6 @@ $(document).ready(function() {
 		}
 
 		event.preventDefault();
-
-		console.log( number_try );
 		if( ( errors.length == 0 ) || ( number_try >= tryes*countNames ) ){
 			//счетчик ходов
 

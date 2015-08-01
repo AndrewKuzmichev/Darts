@@ -14,12 +14,19 @@ class IndexController extends MainController{
         $this->data['player_names'] = $playerModel->getPlayerNames();
         return view( 'main', $this->data );
     }
+    public function array_shuffle($array) {
+		if (shuffle($array)) {
+			return $array;
+		} else {
+			return FALSE;
+		}
+	}
     public function playground( Request $request ){
 
         if( !empty( $request->input('player') ) ){
-            $this->data['startNames'] = $request->input('player');
+            $this->data['startNames'] = $this->array_shuffle( $request->input('player') );
             $this->data['tryes'] = $request->input('tryes');
-            session([ 'name_players' => $request->input('player') ]);
+            session([ 'name_players' => $this->array_shuffle($request->input('player')) ]);
             session([ 'tryes' => $request->input('tryes') ]);
         }else {
             $this->data['startNames'] = session('name_players');
@@ -37,4 +44,5 @@ class IndexController extends MainController{
 
         return view( 'playground', $this->data );
     }
+
 }

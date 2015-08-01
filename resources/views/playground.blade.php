@@ -1,5 +1,6 @@
 @include("layouts.header")
 <? // Передача имен игроков и их кол-ва в JS
+
 	$namesPhp = json_encode( $startNames ); //Имена игроков
 	$countNames = json_encode( count( $startNames ) ); //Кол-во игроков
 	echo "<script>
