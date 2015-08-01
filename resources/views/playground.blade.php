@@ -14,27 +14,7 @@
 	<div class="wrap_playground">
 		<div class="main playground" id="left_playground">
 			<table class="playground_table">
-
-				<tr>
-					<th>Имя</th>
-					<?for( $i = 1; $i<=$tryes; $i++){?>
-						<th> <?=$i?>-я </th>
-					<?}?>
-
-					<th>Всего</th>
-				</tr>
-				@foreach( $startNames as $name )
-					<tr>
-						<td class='player_names'>{{ $name }}</td>
-
-						<?for( $i = 1; $i<=$tryes; $i++){?>
-							<td></td>
-						<?}?>
-
-						<td class="all_sum"></td>
-					</tr>
-				@endforeach
-
+				@include('table')
 			</table>
 		</div>
 		<div class="main playground who_stepping"  id="right_playground">
@@ -55,6 +35,7 @@
 		</div>
 		<div id="for_sum" data-v="<?if( !empty( $_REQUEST['sum'] ) )echo $_REQUEST['sum'];?>"></div>
 		<div id="for_gamer" data-v="<?if( !empty( $_REQUEST['gamer'] ) )echo $_REQUEST['gamer'];?>"></div>
+
 	</div>
 	<div class="result">
 		<img src="champion.jpg" alt="чемп" class="champion">
@@ -71,4 +52,5 @@
 		<img src="firewark.jpg"  id="firewark" alt="">
 		<img src="firewark2.jpg" id="firewark2" alt="">
 	</div>
+
 @include("layouts.footer")

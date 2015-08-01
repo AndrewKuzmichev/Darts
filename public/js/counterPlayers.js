@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$("#count").click(function(event){
+	$("#count").click(function(event){//Посчет суммы бросков
 		var sum = 0;
 		var gamer = $("#nowPlayer").text();
 		var flag = false;
@@ -8,9 +8,12 @@ $(document).ready(function() {
 		$("#myform").find('input[type="number"]').each(function(){//подсчет суммы попытки
 			var val = parseInt( $(this).val() );
 			sum = sum + val;
-
+			//console.log('на итерации значение =  '+ typeof( val )+' - '+ val);
 		});
-
+		if( sum === 0 ){
+			sum = 1000;
+		}
+		
 		$("#myform").find('input[type="number"]').each(function(){//обнуление введенных результатов
 			$(this).val('');
 		});
@@ -22,7 +25,11 @@ $(document).ready(function() {
 				data: { sum: sum, gamer: gamer},
 				success: function(data){
 					var gamer_name =  $(data).find("#for_gamer").attr('data-v');
-					var sum_try =  $(data).find("#for_sum").attr('data-v');
+					var sum_try = parseInt( $(data).find("#for_sum").attr('data-v') );
+					if( sum_try === 1000 ){
+						sum_try = 0;
+					}
+					console.log( "Сумма попытки равна: "+typeof( sum_try ) +' - '+ sum_try );
 					var sum_total = 0;
 					plaing(gamer_name, sum_try, sum_total, flag, flagForSum);
 				}
@@ -116,37 +123,6 @@ $(document).ready(function() {
 				$('.no_champ').append('<li><span>'+(i+1)+'.</span>'+resultNames[i]+' - '+resultScores[i]+'</li>');
 			}
 			 $('.result').css('display','block');
-			// for (var key in result) {
-			// 	if (  arrayHasOwnIndex( result, key ) ) {
-			// 		console.log( result[key] );
-			// 	}
-			// }
-
-			// var flagResult = true;
-			// var indexResult = 1;
-			// for (var key in result) {
-			// 	if ( flagResult ) {
-			// 		$('.champion_name').html( key +' - '+result[key]);
-			// 		flagResult = false;
-			// 	}
-			//
-			// 	var a = indexResult +1 ;
-			// 	console.log(a);
-			// 	$('.no_champ').append('<li><span>'+a+'.</span>'+key+' - '+result[key]+'</li>');
-			// 	indexResult++;
-			//
-			// }
-			//
-			// var indexResult = 1;
-			// for (var key in result) {
-			// 	var a = indexResult +1 ;
-			// 	console.log(a);
-			// 	$('.no_champ').append('<li><span>'+a+'.</span>'+key+' - '+result[key]+'</li>');
-			// 	indexResult++;
-			//
-			// }
-			// //console.log( $('.result').html() );
-			// $('.result').css('display','block');
 
 		}
 	});
