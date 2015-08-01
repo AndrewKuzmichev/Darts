@@ -1,0 +1,243 @@
+body{
+	margin:0;
+	padding:0;
+	font-family: "Monaco";
+}
+p{
+	display:inline-block;
+}
+.main{
+	width: 600px;
+	height: 400px;
+	margin: 10% auto;
+	border: 1px solid #000;
+	border-radius: 2px;
+	box-shadow: 2px 2px 8px 0px;
+}
+.main span{
+	padding-left: 4px;
+	position: relative;
+	top: 2px;
+}
+.plaing{
+	padding: 7% 0 0 15%;
+	font-size: 40px;
+}
+.tryes{
+	padding: 4% 0 0 15%;
+	font-size: 20px;
+}
+.main select{
+	width: 56px;
+	position: relative;
+	left: 46px;
+	top: -2px;
+}
+.for_checkboxes{
+	display: block;
+	width: 210px;
+	float: right;
+	margin-right: 7%;
+	margin-top: 5%;
+	font-size: 22px;
+	line-height: 0;
+}
+.for_checkboxes input[type="checkbox"]{
+	margin: 10px;
+}
+.main a{
+	width: 136px;
+	font-size: 38px;
+	color: green;
+	border: 1px solid green;
+	padding: 8px 15px;
+	margin: 0 auto;
+	display: block;
+	border-radius: 2px;
+	text-decoration: none;
+	margin-top: 36px;
+}
+.wrap_playground{
+	width: 1200px;
+	margin: 10% auto;
+}
+.playground{
+	margin: 0;
+	float: left;
+	width: 580px;
+
+}
+.who_stepping{
+	float: right;
+}
+.playground_table{
+	width: 100%;
+	border-spacing: 0px;
+}
+.playground_table th{
+	font-size: 20px;
+}
+.playground_table td{
+	text-align: center;
+	font-size: 19px;
+	height: 60px;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+}
+.playground_table tr td:first-child{
+	width: 30%;
+	font-size: 18px;
+}
+.playground_table tr td:last-child{
+	font-size: 23px;
+	border-right: none;
+}
+.playground_table tr:first-child{
+	height: 73px;
+}
+.back{
+	text-decoration: none;
+	font-size: 25px;
+	color: #000;
+	display: inline-block;
+	padding: 15px;
+	margin-top: 10px;
+	margin-left: 10px;
+	border: 1px solid #000;
+	border-radius: 3px;
+}
+.gold{
+	color: #FFE15C;
+}
+.silver{
+	color: #C0C0C0 ;
+}
+.bronze{
+	color: #CD7F32;
+}
+#left_playground{
+	box-shadow: none;
+	height: auto;
+}
+.now_plaing{
+	padding: 0% 0 0 6%;
+	font-size: 24px;
+	display: inline-block;
+}
+.player{
+	font-size: 32px;
+	display: inline-block;
+	color: green;
+	padding-left: 10px;
+	width: 57%;
+}
+input[type="number"]{
+	width: 24%;
+	height: 60px;
+	font-size: 40px;
+	margin-left: 32px;
+	text-align: center;
+	border-radius: 2px;
+	border: 2px solid #000;
+}
+input[type="number"]:focus{
+	border: 2px solid green;
+	outline: none
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none; margin:0;}
+#count{
+	width: 146px;
+	font-size: 28px;
+	margin-bottom: 30px;
+	cursor: pointer;
+}
+#right_playground{
+	box-shadow: none;
+	height: auto;
+}
+.result{
+	display: none;
+	width: 620px;
+	height: 350px;
+	margin: 0 auto;
+	position: absolute;
+	top: 24%;
+	left: 32%;
+	border: 1px solid #000;
+	background: white;
+}
+.champion{
+	padding-top: 7%;
+	padding-left: 7%;
+}
+.champion_name{
+	font-size: 30px;
+	color: #FFE15C;
+	display: inline-block;
+	position: absolute;
+	top: 65px;
+	padding-left: 37px;
+}
+.no_champ{
+	padding-left: 18%;
+}
+.result ul li{
+	list-style: none;
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+.result a{
+	font-size: 21px;
+	color: green;
+	display: inline-block;
+	padding: 10px 15px;
+	border: 1px solid #000;
+	text-decoration: none;
+	margin-bottom: 7px;
+	border-radius:  3px;
+}
+.wrap_a{
+	position: absolute;
+	right: 3px;
+	top: 49%;
+	display: inline-block;
+	width: 189px;
+}
+#firewark{
+	position: absolute;
+	right: -86px;
+	top: -66px;
+}
+#firewark2{
+	position: absolute;
+	top: -61px;
+	left: -83px;
+}
+.statistic{
+	width: 85%;
+	margin: 4% auto;
+	height: 700px;
+	display: block;
+}
+.playground_table tr td:first-child {
+	width: 20%;
+	font-size: 18px;
+}
+.statistic_table th{
+	width: 174px;
+	font-size: 17px;
+}
+.statistic_table tr td:first-child {
+	text-align: left;
+}
+.statistic_table tr td span{
+	padding-right: 4px;
+}
+.green{
+	color: green;
+}
+.red{
+	color: red;
+}
