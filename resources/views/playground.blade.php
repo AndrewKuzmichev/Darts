@@ -40,7 +40,7 @@
 
 	</div>
 	<div class="result">
-		<img src="champion.jpg" alt="чемп" class="champion">
+		<img src="images/champion.jpg" alt="чемп" class="champion">
 		<p class='champion_name'></p>
 
 		<ul class="no_champ">
@@ -51,8 +51,8 @@
 			<a href="/">Новая игра</a>
 			<a href="statistics.php">Статистика</a>
 		</div>
-		<img src="firewark.jpg"  id="firewark" alt="">
-		<img src="firewark2.jpg" id="firewark2" alt="">
+		<img src="images/firewark.jpg"  id="firewark" alt="">
+		<img src="images/firewark2.jpg" id="firewark2" alt="">
 	</div>
 
 @include("layouts.footer")
