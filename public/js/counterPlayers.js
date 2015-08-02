@@ -4,7 +4,6 @@ $(document).ready(function() {
 	var index = 1;
 	var number_try = 0;
 	var flagCheckWin = false;
-	console.log( namesPhp );
 	$("body").keypress(function(e){
 
 		if( ( e.keyCode==13 ) && ( $('.result').css('display') == 'none' ) ){
