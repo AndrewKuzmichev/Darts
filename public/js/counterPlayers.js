@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$("input[type='number']:first-child").focus(); // Фокус на первый элемент при загрузке
 	//Реализация счетчика тех, кто ходит
 	var namesJs = namesPhp;
 	var index = 1;
@@ -11,7 +12,6 @@ $(document).ready(function() {
 		}
 	});
 	$("#count").click(function(event){//Посчет суммы бросков
-
 
 		//подсчет суммы хода, внесение в таблицу результата
 		var sum = 0;
