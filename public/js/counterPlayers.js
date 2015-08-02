@@ -65,6 +65,7 @@ $(document).ready(function() {
 				$("#myform").find('input[type="number"]').each(function(){//обнуление введенных результатов
 					$(this).val('');
 				});
+				$("input[type='number']:first-child").focus();
 			//конец счетчика ходов
 
 			$.ajax({
@@ -82,9 +83,7 @@ $(document).ready(function() {
 					}
 			});
 		}else {
-
 			alert(errors )+'</br>';
-
 		}
 
 		//подведение результатов
