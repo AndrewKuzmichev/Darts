@@ -8,12 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Player;
 
-class IndexController extends MainController{
+class PlaygroundController extends MainController{
 
-    public function index( Player $playerModel ){
-        $this->data['player_names'] = $playerModel->getPlayerNames();
-        return view( 'main', $this->data );
-    }
     private function array_shuffle($array) {
 		if (shuffle($array)) {
 			return $array;

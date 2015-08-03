@@ -133,12 +133,24 @@ $(document).ready(function() {
 					}
 					indexResult++;
 				}
+				
+				if( resultScores[0] !== resultScores[1] ){//проверка на ничью - если первые два игрока набрали одинаковые очки, то редирект на эту же страницу
+					$('.champion_name').html( resultNames[0]+' - '+resultScores[0]);
+					for (var i = 1; i < resultScores.length; i++) {
+						$('.no_champ').append('<li><span>'+(i+1)+'.</span>'+resultNames[i]+' - '+resultScores[i]+'</li>');
+					}
+					$('.result').css('display','block');
 
-				$('.champion_name').html( resultNames[0]+' - '+resultScores[0]);
-				for (var i = 1; i < resultScores.length; i++) {
-					$('.no_champ').append('<li><span>'+(i+1)+'.</span>'+resultNames[i]+' - '+resultScores[i]+'</li>');
+					// $.post( '/statistics',
+					// 		{ result: result },
+					// 		function(data){
+					// 			console.log('данные отправлены успешно');
+					// 		}
+					// );
+				}else{
+					alert('Ничья не обрабатывается, играйте до победы');
+					document.location.href = '/playground';
 				}
-				$('.result').css('display','block');
 
 			}
 		//конец подведения результатов

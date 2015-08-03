@@ -49,7 +49,7 @@
 		<div class="wrap_a">
 			<a href="/playground">Отыграться</a>
 			<a href="/">Новая игра</a>
-			<a href="statistics.php">Статистика</a>
+			<a href="/statistics">Статистика</a>
 		</div>
 		<img src="images/firewark.jpg"  id="firewark" alt="">
 		<img src="images/firewark2.jpg" id="firewark2" alt="">
