@@ -16,6 +16,7 @@ $(document).ready(function() {
 		//подсчет суммы хода, внесение в таблицу результата
 		var sum = 0;
 		var gamer = $("#nowPlayer").text();
+		var bestThrow = 0;
 		var flag = false;
 		var flagForSum = false;
 		var errors = [];
@@ -27,7 +28,11 @@ $(document).ready(function() {
 				errors.push( 'Ошибка в ' +(index+1)+  "-м поле" );
 			}else if( val < 0 ){
 				errors.push( (index+1)+"-e поле.Не может быть отрицательным!" );
-			}else  sum = sum + val;
+			}else  {
+				sum = sum + val;
+				bestThrow = fBestThrow( bestThrow, val );
+				console.log( ' Лучшая попытка '+bestThrow );
+			}
 		});
 
 
@@ -99,6 +104,7 @@ $(document).ready(function() {
 					var value_result = parseInt( $(this).html() );
 					preSortResultAr[namesJs[indexAr]] = value_result;// массив с ключами-именами и суммами
 					testSortResultAr[indexAr] = value_result;//массив в суммами
+					//добавить сюда массив из лучших бросков
 					indexAr++;
 				});
 
@@ -110,6 +116,7 @@ $(document).ready(function() {
 							var between = testSortResultAr[i];
 							testSortResultAr[i] = testSortResultAr[j];
 							testSortResultAr[j] = between;
+							//отсортировать массив лучших бросков по убыванию
 						}
 					}
 				}
@@ -133,20 +140,26 @@ $(document).ready(function() {
 					}
 					indexResult++;
 				}
-				
+
 				if( resultScores[0] !== resultScores[1] ){//проверка на ничью - если первые два игрока набрали одинаковые очки, то редирект на эту же страницу
 					$('.champion_name').html( resultNames[0]+' - '+resultScores[0]);
 					for (var i = 1; i < resultScores.length; i++) {
 						$('.no_champ').append('<li><span>'+(i+1)+'.</span>'+resultNames[i]+' - '+resultScores[i]+'</li>');
 					}
+					console.log( result );
+
 					$('.result').css('display','block');
 
-					// $.post( '/statistics',
-					// 		{ result: result },
-					// 		function(data){
-					// 			console.log('данные отправлены успешно');
-					// 		}
-					// );
+					$.ajax({
+							type: "post",
+							url: "/statistics",
+							data: { resultNames: resultNames, resultScores: resultScores },
+							success: function(data){
+								console.log('Данные успешно отправлены');
+							}
+					});
+
+
 				}else{
 					alert('Ничья не обрабатывается, играйте до победы');
 					document.location.href = '/playground';
@@ -158,6 +171,11 @@ $(document).ready(function() {
 	});
 
 //ФУНКЦИИ
+	function fBestThrow( bestThrow, val  ){
+		if( val > bestThrow  ){
+			return val;
+		}else return bestThrow;
+	}
 	function arrayHasOwnIndex(array, key) {//Для for in
 		return array.hasOwnProperty(key);
 	}

@@ -32,6 +32,7 @@ class PlaygroundController extends MainController{
         return view( 'playground', $this->data );
     }
     public function plaing( Request $request ){
+
          $this->data['startNames'] =  session('name_players');
          $this->data['tryes'] =  session('tryes');
          $this->data['scores'] = $request->input('score');

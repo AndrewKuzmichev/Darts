@@ -6,5 +6,6 @@ Route::get('/verstka', function(){
 	return view('verstka');
 });
 
-Route::get('/playground',['as'=>'plaing', 'uses'=>'PlaygroundController@plaing']);
-Route::get('/statistics', "StatisticController@index");
+Route::get('/playground', ['as'=>'plaing', 'uses'=>'PlaygroundController@plaing']);
+Route::post('/statistics', ['as'=>'post_statistics', 'uses'=>'StatisticController@index']);
+Route::get('/statistics', ['as'=>'get_statistics', 'uses'=>'StatisticController@index']);

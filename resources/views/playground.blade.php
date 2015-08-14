@@ -10,7 +10,6 @@
 		  </script>";
 ?>
 <script type="text/javascript" src="js/counterPlayers.js"></script>
-
 	<a href="/" class="back">Назад</a>
 	<div class="errors" data-v="<?if( !empty( $_REQUEST['errors'] ) )echo $_REQUEST['errors'];?>">	</div>
 	<div class="wrap_playground">
@@ -49,10 +48,9 @@
 		<div class="wrap_a">
 			<a href="/playground">Отыграться</a>
 			<a href="/">Новая игра</a>
-			<a href="/statistics">Статистика</a>
+			<a href="/statistics" id="statistic">Статистика</a>
 		</div>
 		<img src="images/firewark.jpg"  id="firewark" alt="">
 		<img src="images/firewark2.jpg" id="firewark2" alt="">
 	</div>
-
 @include("layouts.footer")

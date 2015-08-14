@@ -1,6 +1,7 @@
 @include("layouts.header")
 
 	<a href="/" class="back">Назад</a>
+
 		<div class="statistic">
 			<table class="statistic_table playground_table ">
 				<tr>
