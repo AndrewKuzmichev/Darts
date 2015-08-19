@@ -57,27 +57,26 @@ class StatisticController extends MainController{
 
 			session([ 'resultNames' =>  $request->input('resultNames') ]);
 			session([ 'resultScores' =>  $request->input('resultScores') ]);
+			session([ 'bestThrowNames' =>  $request->input('bestThrowNames') ]);
+			session([ 'bestThrowScores' =>  $request->input('bestThrowScores') ]);
 
 			$resultNames = session('resultNames');
-
 			$resultScores = session('resultScores');
+			$bestThrowNames = session('bestThrowNames');
+			$bestThrowScores = session('bestThrowScores');
 
-			echo "<pre>".print_r( $resultNames ,1)."</pre>";
-			echo "<pre>".print_r( $resultScores ,1)."</pre>";
-
-			foreach( $resultNames as $key=>$name ){
+			foreach( $resultNames as $key=>$name ){//собираем массив result ['Вова'=>123,'Олег'=>12]
 				$result[$name] = $resultScores[$key];
 			}
-
-			$resultThrow = ['Вова'=>1000, 'Максим Петров'=>200 , 'Андрей'=>1];//еще один массив, с наилучшими попытками
-
+			foreach( $bestThrowNames as $key=>$name ){//собираем массив preThrow ['Олег'=>12,'Вова'=>123]
+				$arThrow[$name] = $bestThrowScores[$key];
+			}
 
 			$objArray = [];
 
-			$noChangeData =  $this->getPlayer( $playerModel, $resultNames );
-			$objArray = $this->createPlayersObjects( $noChangeData ); // метод создания массива объектов DataPlayer для хранения и изменения данных выбор
-			$objArray = $this->changeBasicFields( $objArray, $result, $resultNames, $resultThrow); //Изменение основных полей объекта (count_win,count_lose,games)
-
+			$noChangeData = $this->getPlayer( $playerModel, $resultNames );
+			$objArray = $this->createPlayersObjects( $noChangeData ); // метод создания массива объектов DataPlayer для хранения и изменения данных выборки
+			$objArray = $this->changeBasicFields( $objArray, $result, $resultNames, $arThrow); //Изменение основных полей объекта (count_win,count_lose,games)
 			$this->updateFields($noChangeData, $objArray);
 
 		}else {
@@ -97,7 +96,7 @@ class StatisticController extends MainController{
 					$saveData->best_throw = $objData->bestThrow;
 					$saveData->games = $objData->games;
 					$saveData->all_scores = $objData->allScores;
-					//$saveData->save();
+					$saveData->save();
 				}
 			}
 		}

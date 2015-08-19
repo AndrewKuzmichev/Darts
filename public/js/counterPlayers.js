@@ -4,7 +4,11 @@ $(document).ready(function() {
 	var namesJs = namesPhp;
 	var index = 1;
 	var number_try = 0;
+	var indexForThrow = 0;
 	var flagCheckWin = false;
+	var bestThrowNames = [];
+	var bestThrowScores = [];
+
 	$("body").keypress(function(e){
 
 		if( ( e.keyCode==13 ) && ( $('.result').css('display') == 'none' ) ){
@@ -17,8 +21,11 @@ $(document).ready(function() {
 		var sum = 0;
 		var gamer = $("#nowPlayer").text();
 		var bestThrow = 0;
+		var newThrow;
+
 		var flag = false;
 		var flagForSum = false;
+
 		var errors = [];
 
 		$("#myform").find('input[type="number"]').each(function(index){//подсчет суммы попытки
@@ -30,10 +37,14 @@ $(document).ready(function() {
 				errors.push( (index+1)+"-e поле.Не может быть отрицательным!" );
 			}else  {
 				sum = sum + val;
-				bestThrow = fBestThrow( bestThrow, val );
-				console.log( ' Лучшая попытка '+bestThrow );
 			}
 		});
+
+		if( indexForThrow < tryes*countNames ){//создание массивов лучших бросков
+			//bestThrowNames.push( gamer );
+			//bestThrowScores.push( sum );
+		}
+		indexForThrow++;
 
 
 		if( sum === 0 ){//решение проблемы ввода нулей
@@ -80,6 +91,7 @@ $(document).ready(function() {
 					success: function(data){
 						var gamer_name =  $(data).find("#for_gamer").attr('data-v');
 						var sum_try = parseInt( $(data).find("#for_sum").attr('data-v') );
+
 						if( sum_try === 1000 ){//исправление ошибки с вводом нулей
 							sum_try = 0;
 						}
@@ -92,10 +104,39 @@ $(document).ready(function() {
 		}
 
 		//подведение результатов
+
 			if( number_try > tryes*countNames )
 				flagCheckWin = true;
-
+				var myNewIndex = 0;
 			if( flagCheckWin ){
+				$('.playground_table .player_names').each(function(){
+					var PlayerNames = $(this).text();
+
+					$(this).nextUntil('.all_sum').each(function(){
+						if( myNewIndex == 0 ){
+							bestThrowScores[0] = parseInt( $(this).text() );
+						}else {
+							if( $(this).text() > parseInt( bestThrowScores[0] ) ){
+								bestThrowScores[0] = parseInt( $(this).text() );
+							}
+						}
+						myNewIndex = 1;
+					});
+
+					bestThrowNames[PlayerNames] = bestThrowScores[0];
+					myNewIndex = 0;
+				});
+				//console.log( bestThrowNames );
+
+				// for (var key in bestThrowNames) {
+				// 	if (  arrayHasOwnIndex( bestThrowNames, key ) ) {
+				// 		console.log( bestThrowNames[0] );
+				// 		console.log( key+' - '+bestThrowNames[key] );
+				// 	}
+				// }
+
+				//console.log( bestThrowNames );
+
 				//создать массив из значений сумм с ключами в виде имен из массива namesJs
 				var indexAr = 0;
 				var preSortResultAr = [];
@@ -104,7 +145,6 @@ $(document).ready(function() {
 					var value_result = parseInt( $(this).html() );
 					preSortResultAr[namesJs[indexAr]] = value_result;// массив с ключами-именами и суммами
 					testSortResultAr[indexAr] = value_result;//массив в суммами
-					//добавить сюда массив из лучших бросков
 					indexAr++;
 				});
 
@@ -116,7 +156,6 @@ $(document).ready(function() {
 							var between = testSortResultAr[i];
 							testSortResultAr[i] = testSortResultAr[j];
 							testSortResultAr[j] = between;
-							//отсортировать массив лучших бросков по убыванию
 						}
 					}
 				}
@@ -132,11 +171,21 @@ $(document).ready(function() {
 
 				var resultNames = [];
 				var resultScores = [];
+				var resultThrowNames = [];
 				var indexResult = 0;
 				for (var key in result) {
 					if (  arrayHasOwnIndex( result, key ) ) {
 						resultNames[indexResult] = key;
 						resultScores[indexResult] = result[key];
+						for (var key2 in bestThrowNames) {
+							if (  arrayHasOwnIndex( bestThrowNames, key2 ) ) {
+								if( key == key2){
+									resultThrowNames[indexResult] = key;
+									bestThrowScores[indexResult] = bestThrowNames[key2];
+								}
+							}
+
+						}
 					}
 					indexResult++;
 				}
@@ -146,14 +195,14 @@ $(document).ready(function() {
 					for (var i = 1; i < resultScores.length; i++) {
 						$('.no_champ').append('<li><span>'+(i+1)+'.</span>'+resultNames[i]+' - '+resultScores[i]+'</li>');
 					}
-					console.log( result );
-
+					$
 					$('.result').css('display','block');
-
+					//console.log( bestThrowNames );
+					//console.log( bestThrowScores );
 					$.ajax({
 							type: "post",
 							url: "/statistics",
-							data: { resultNames: resultNames, resultScores: resultScores },
+							data: { resultNames: resultNames, resultScores: resultScores, bestThrowNames:resultThrowNames, bestThrowScores: bestThrowScores },
 							success: function(data){
 								console.log('Данные успешно отправлены');
 							}
@@ -191,7 +240,7 @@ $(document).ready(function() {
 		return max;
 	}
 
-	var plaing = function( gamer_name, sum_try, sum_total, flag, flagForSum){//функция внесения очков в таблицу и подсчет общей суммы очков
+	function plaing( gamer_name, sum_try, sum_total, flag, flagForSum){//функция внесения очков в таблицу и подсчет общей суммы очков
 		$(".player_names").each(function(){
 			if( ( $(this).text() == gamer_name ) && ( $(this).next() != '' ) ){
 				$(this).nextUntil('.all_sum').each(function(){ // внесение суммы попытки в таблицу соответствующего игрока
@@ -220,10 +269,5 @@ $(document).ready(function() {
 			}
 		});
 	}
-
-
-
-
-
 
 });// Конец ready

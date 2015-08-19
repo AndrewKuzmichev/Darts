@@ -36,7 +36,6 @@
 		</div>
 		<div id="for_sum" data-v="<?if( !empty( $_REQUEST['sum'] ) )echo $_REQUEST['sum'];?>"></div>
 		<div id="for_gamer" data-v="<?if( !empty( $_REQUEST['gamer'] ) )echo $_REQUEST['gamer'];?>"></div>
-
 	</div>
 	<div class="result">
 		<img src="images/champion.jpg" alt="чемп" class="champion">
